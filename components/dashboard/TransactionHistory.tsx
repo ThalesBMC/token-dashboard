@@ -30,6 +30,8 @@ import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
 
 interface TransactionHistoryProps {
+  // TODO: Create an interface for Contract events and Transactions
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   transactions: any[];
   contractEvents: any[];
   isLoadingHistory: boolean;

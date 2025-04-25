@@ -41,7 +41,7 @@ export const TokenBalance = ({
           </div>
         )}
         <p className="text-sm text-muted-foreground mb-4">
-          Need tokens? This is a test contract, so you'll need the contract
+          Need tokens? This is a test contract, so you&apos;ll need the contract
           owner to mint you some tokens.
         </p>
       </CardContent>
