@@ -50,7 +50,7 @@ export const StakingCard = ({
   isLoading = false,
 }: StakingCardProps) => {
   return (
-    <Card className="col-span-1 md:col-span-2">
+    <Card className="col-span-1 md:col-span-3 lg:col-span-2">
       <CardHeader>
         <div className="flex justify-between items-center">
           <div>
@@ -62,7 +62,7 @@ export const StakingCard = ({
         </div>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
           <div className="bg-secondary/50 p-4 rounded-lg">
             <p className="text-sm text-muted-foreground">Staked Amount</p>
             {isLoading ? (

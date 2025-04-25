@@ -22,7 +22,7 @@ export const TokenBalance = ({
   isLoading = false,
 }: TokenBalanceProps) => {
   return (
-    <Card>
+    <Card className="md:col-span-3 lg:col-span-1">
       <CardHeader>
         <CardTitle className="truncate">Token Balance</CardTitle>
         <CardDescription className="truncate">
@@ -40,10 +40,6 @@ export const TokenBalance = ({
             {formatDisplayValue(balance)} {symbol || ""}
           </div>
         )}
-        <p className="text-sm text-muted-foreground mb-4">
-          Need tokens? This is a test contract, so you&apos;ll need the contract
-          owner to mint you some tokens.
-        </p>
       </CardContent>
     </Card>
   );

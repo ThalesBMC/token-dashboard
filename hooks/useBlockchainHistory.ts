@@ -53,7 +53,7 @@ export const useBlockchainHistory = (address?: `0x${string}`) => {
 
   const ETHERSCAN_API_KEY = process.env.NEXT_PUBLIC_EXPLORER_API_KEY || "";
   const ETHERSCAN_API_URL = process.env.NEXT_PUBLIC_EXPLORER_API_URL || "";
-  const RPC_URL = process.env.NEXT_PUBLIC_RPC_URL || "http://localhost:8545";
+  const RPC_URL = process.env.NEXT_PUBLIC_RPC_URL || "https://sepolia.base.org";
 
   const fetchContractEvents = useCallback(async () => {
     if (!address) return;
@@ -81,7 +81,7 @@ export const useBlockchainHistory = (address?: `0x${string}`) => {
       );
 
       const currentBlock = blockNumber ? Number(blockNumber) : 0;
-      const lookbackBlocks = 1000; // How many blocks to look back
+      const lookbackBlocks = 2000; // How many blocks to look back
       const startBlock = Math.max(0, currentBlock - lookbackBlocks);
 
       let formattedEvents: FormattedEvent[] = [];
@@ -92,6 +92,7 @@ export const useBlockchainHistory = (address?: `0x${string}`) => {
           tokenContract.filters.Staked(address),
           startBlock
         )) as unknown as EventWithArgs[];
+        console.log(stakedEvents);
 
         const formattedStakedEvents = stakedEvents.map((event) => {
           const args = event.args || [];
@@ -304,13 +305,12 @@ export const useBlockchainHistory = (address?: `0x${string}`) => {
     }
   }, [address, ETHERSCAN_API_KEY, ETHERSCAN_API_URL]);
 
-  // Fetch data when address changes
   useEffect(() => {
     if (address) {
       fetchContractEvents();
       fetchTransactionHistory();
     }
-  }, [address, blockNumber, fetchContractEvents, fetchTransactionHistory]);
+  }, [address]);
 
   const totalTransactionPages = Math.ceil(
     (transactions?.length || 0) / itemsPerPage

@@ -34,7 +34,7 @@ export const MintTokens = ({
   isLoading = false,
 }: MintTokensProps) => {
   return (
-    <Card className="col-span-1 lg:col-span-3">
+    <Card className="col-span-1  md:col-span-3">
       <CardHeader>
         <CardTitle className="truncate">Mint Tokens</CardTitle>
         <CardDescription className="truncate">

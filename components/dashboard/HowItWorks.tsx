@@ -14,7 +14,7 @@ interface HowItWorksProps {
 
 export const HowItWorks = ({ tokenSymbol, rewardRate }: HowItWorksProps) => {
   return (
-    <Card className="col-span-1 lg:col-span-3">
+    <Card className="col-span-1 md:col-span-3">
       <CardHeader>
         <CardTitle>How It Works</CardTitle>
         <CardDescription>Understanding the Staking Process</CardDescription>
@@ -22,7 +22,7 @@ export const HowItWorks = ({ tokenSymbol, rewardRate }: HowItWorksProps) => {
       <CardContent>
         <div className="space-y-4">
           <div className="flex gap-3">
-            <div className="bg-primary text-primary-foreground rounded-full h-8 w-8 flex items-center justify-center">
+            <div className="bg-primary text-primary-foreground rounded-full min-h-8 min-w-8 h-8 w-8 flex items-center justify-center">
               1
             </div>
             <div>
@@ -35,7 +35,7 @@ export const HowItWorks = ({ tokenSymbol, rewardRate }: HowItWorksProps) => {
           </div>
 
           <div className="flex gap-3">
-            <div className="bg-primary text-primary-foreground rounded-full h-8 w-8 flex items-center justify-center">
+            <div className="bg-primary text-primary-foreground rounded-full  min-h-8 min-w-8 h-8 w-8 flex items-center justify-center">
               2
             </div>
             <div>
@@ -48,7 +48,7 @@ export const HowItWorks = ({ tokenSymbol, rewardRate }: HowItWorksProps) => {
           </div>
 
           <div className="flex gap-3">
-            <div className="bg-primary text-primary-foreground rounded-full h-8 w-8 flex items-center justify-center">
+            <div className="bg-primary text-primary-foreground rounded-full  min-h-8 min-w-8 h-8 w-8 flex items-center justify-center">
               3
             </div>
             <div>
@@ -60,7 +60,7 @@ export const HowItWorks = ({ tokenSymbol, rewardRate }: HowItWorksProps) => {
           </div>
 
           <div className="flex gap-3">
-            <div className="bg-primary text-primary-foreground rounded-full h-8 w-8 flex items-center justify-center">
+            <div className="bg-primary text-primary-foreground rounded-full  min-h-8 min-w-8 h-8 w-8 flex items-center justify-center">
               4
             </div>
             <div>
@@ -73,7 +73,7 @@ export const HowItWorks = ({ tokenSymbol, rewardRate }: HowItWorksProps) => {
           </div>
 
           <div className="flex gap-3">
-            <div className="bg-primary text-primary-foreground rounded-full h-8 w-8 flex items-center justify-center">
+            <div className="bg-primary text-primary-foreground rounded-full  min-h-8 min-w-8 h-8 w-8 flex items-center justify-center">
               5
             </div>
             <div>

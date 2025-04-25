@@ -113,14 +113,14 @@ export const TransactionHistory = ({
   };
 
   return (
-    <Card className="col-span-1 lg:col-span-3">
+    <Card className="col-span-1 md:col-span-3">
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
           <CardTitle className="truncate">
             Transaction History & Events
           </CardTitle>
-          <CardDescription className="truncate">
-            View recent transactions and contract events
+          <CardDescription className="overflow-hidden mt-1">
+            View recent transactions and contract events (last 2000 blocks)
           </CardDescription>
         </div>
         <Button

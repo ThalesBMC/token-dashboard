@@ -132,7 +132,7 @@ export default function Home() {
       )}
 
       <div className="container mx-auto max-w-6xl">
-        <header className="flex justify-between items-center mb-10">
+        <header className="flex flex-col gap-4 md:gap-0 md:flex-row  justify-between items-center mb-10">
           <h1 className="text-3xl font-bold">Blockchain Dashboard</h1>
           <div className="flex items-center gap-4">
             <ThemeToggle />
