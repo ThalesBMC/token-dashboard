@@ -2,43 +2,6 @@
 
 A dashboard for interacting with blockchain smart contracts, including functionality for token staking, unstaking, and minting.
 
-## Environment Setup
-
-This project uses environment variables to configure API keys and endpoints. Follow these steps to set up your environment:
-
-1. Copy the `.env.example` file to create a new `.env` file:
-
-```bash
-cp .env.example .env
-```
-
-2. Update the variables in the `.env` file with your own values:
-
-```
-# Blockchain Explorer API
-NEXT_PUBLIC_EXPLORER_API_KEY=your_api_key_here  # Get from Basescan/Etherscan
-NEXT_PUBLIC_EXPLORER_API_URL=https://api-sepolia.basescan.org/api  # Or your preferred network
-
-# RPC URL
-NEXT_PUBLIC_RPC_URL=http://localhost:8545  # Use your own provider URL
-```
-
-## Getting Started
-
-First, install dependencies:
-
-```bash
-pnpm install
-```
-
-Then, run the development server:
-
-```bash
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the dashboard.
-
 ## Features
 
 - Connect wallet using Rainbow Kit & wagmi
@@ -57,6 +20,43 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Rainbow Kit
 - ethers.js
 
+## Environment Setup
+
+This project uses environment variables to configure API keys and endpoints. Follow these steps to set up your environment:
+
+1. Copy the `.env.example` file to create a new `.env` file:
+
+```bash
+cp .env.example .env
+```
+
+2. Update the variables in the `.env` file with your own values:
+
+```
+# Blockchain Explorer API
+NEXT_PUBLIC_EXPLORER_API_KEY=your_api_key_here  # Get from Basescan/Etherscan
+NEXT_PUBLIC_EXPLORER_API_URL=https://api-sepolia.basescan.org/api  # Or your preferred network
+
+# RPC URL
+NEXT_PUBLIC_RPC_URL= https://sepolia.base.org
+```
+
+## Getting Started
+
+First, install dependencies:
+
+```bash
+pnpm install
+```
+
+Then, run the development server:
+
+```bash
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the dashboard.
+
 ## Smart Contract Deployment
 
 The dashboard is configured to work with a simple ERC20 token contract with staking capabilities. Here's how to deploy it:
@@ -65,38 +65,13 @@ The dashboard is configured to work with a simple ERC20 token contract with stak
 
 - Install [Foundry](https://book.getfoundry.sh/) for smart contract development:
 
-```bash
-curl -L https://foundry.paradigm.xyz | bash
-foundryup
-```
-
 ### Setting up the Smart Contract Environment
 
 1. Create a `.env` file in your smart contract project with the following:
 
 ```
-# Private key for deployment (without the 0x prefix)
 PRIVATE_KEY=your_private_key_here
 ETHERSCAN_API_KEY=your_etherscan_api_key_here
-```
-
-2. Clone the smart contract repository or create a new Foundry project:
-
-```bash
-mkdir token-contract-foundry && cd token-contract-foundry
-forge init
-```
-
-3. Install OpenZeppelin contracts:
-
-```bash
-forge install OpenZeppelin/openzeppelin-contracts
-```
-
-4. Create a remappings file called `remappings.txt` in the project root:
-
-```
-@openzeppelin/=lib/openzeppelin-contracts/
 ```
 
 ### Testing with Anvil (Local Development)
@@ -111,34 +86,34 @@ anvil
 
 ```bash
 # Using the specific private key mentioned in the query
-forge script script/SimpleToken.s.sol:DeploySimpleToken --rpc-url http://localhost:8545 --private-key 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d --broadcast
+forge script script/SimpleToken.s.sol:DeploySimpleToken --rpc-url http://localhost:8545 --private-key YOUR_PRIVATE_KEY --broadcast
 ```
 
-This will deploy the contract to your local Anvil node, and you can interact with it using the dashboard.
+This will deploy the contract to your local Anvil node, and you can interact with it using the dashboard. Remember to change the network to localhost.
 
 ### Deploying to Sepolia Testnet
 
 To deploy to Sepolia testnet:
 
 ```bash
-# Source the .env file to get your private key
-source .env
 
-# Deploy locally
+# Deploy to Sepolia
 forge script script/SimpleToken.s.sol:DeploySimpleToken --rpc-url https://sepolia.base.org --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY
 ```
 
 ## Updating the Dashboard
 
-After deploying your contract, update the `tokenAddress` in the dashboard project's `lib/wagmi.ts` with your deployed contract address.
+After deploying your contract, update the `tokenAddress` in the dashboard project's `constants/addresses.ts` with your deployed contract address.
 
 ## Using the Dashboard
 
 1. Connect your wallet using the "Connect Wallet" button
 2. Ensure your wallet is connected to the Sepolia testnet (or your local Anvil node)
 3. View your token balance
-4. Stake tokens to earn rewards
-5. Unstake tokens to claim rewards
+4. Mint tokens
+5. Stake tokens to earn rewards
+6. Unstake tokens to claim rewards
+7. See Transaction and Events
 
 ## License
 
