@@ -20,6 +20,14 @@ A dashboard for interacting with blockchain smart contracts, including functiona
 - Rainbow Kit
 - ethers.js
 
+### Token Dashboard
+
+<img src="https://raw.githubusercontent.com/ThalesBMC/token-dashboard/main/public/images/tokenDashboard.png" width="1439" alt="Token Dashboard" />
+
+### Transaction History
+
+<img src="https://raw.githubusercontent.com/ThalesBMC/token-dashboard/main/public/images/transactionHistory.png" width="1439" alt="Transaction History" />
+
 ## Environment Setup
 
 This project uses environment variables to configure API keys and endpoints. Follow these steps to set up your environment:
@@ -85,7 +93,6 @@ anvil
 2. In a separate terminal, deploy the contract to the local node:
 
 ```bash
-# Using the specific private key mentioned in the query
 forge script script/SimpleToken.s.sol:DeploySimpleToken --rpc-url http://localhost:8545 --private-key YOUR_PRIVATE_KEY --broadcast
 ```
 

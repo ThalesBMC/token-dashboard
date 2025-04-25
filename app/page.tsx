@@ -73,20 +73,6 @@ export default function Home() {
     setIsClient(true);
   }, []);
 
-  // Set up auto-refresh for balance and staking information
-  useEffect(() => {
-    if (isConnected) {
-      // Update balances every 15 seconds
-      const longInterval = setInterval(() => {
-        refreshAllData();
-      }, 15000);
-
-      return () => {
-        clearInterval(longInterval);
-      };
-    }
-  }, [isConnected, refreshAllData]);
-
   useEffect(() => {
     // If a transaction was completed and we marked for history refresh
     if (
