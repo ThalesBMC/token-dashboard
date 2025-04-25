@@ -122,6 +122,7 @@ export const StakingCard = ({
               onChange={(e) => onStakeAmountChange(e.target.value)}
               className="overflow-hidden text-ellipsis max-w-full"
               disabled={isLoading || isStaking || isUnstaking || isPending}
+              min={1}
             />
           </div>
           <Button

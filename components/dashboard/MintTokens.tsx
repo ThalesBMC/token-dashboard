@@ -51,10 +51,12 @@ export const MintTokens = ({
               onChange={(e) => onMintAmountChange(e.target.value)}
               disabled={isMinting || isLoading}
               className="overflow-hidden text-ellipsis max-w-full"
+              min={1}
             />
             <Button
               onClick={onMint}
               disabled={
+                parseInt(mintAmount) < 1 ||
                 !isConnected ||
                 !mintAmount ||
                 isMinting ||
