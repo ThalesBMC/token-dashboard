@@ -18,7 +18,7 @@ interface TokenBalanceProps {
 export const TokenBalance = ({
   balance,
   symbol,
-  name,
+
   isLoading = false,
 }: TokenBalanceProps) => {
   return (

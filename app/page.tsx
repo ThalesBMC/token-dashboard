@@ -5,28 +5,23 @@ import { useAccount } from "wagmi";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-// Custom hooks
 import { useTokenData } from "@/hooks/useTokenData";
 import { useTokenTransactions } from "@/hooks/useTokenTransactions";
 import { useBlockchainHistory } from "@/hooks/useBlockchainHistory";
 
-// Components
-import { TokenBalance } from "@/components/blockchain/TokenBalance";
-import { StakingCard } from "@/components/blockchain/StakingCard";
-import { MintTokens } from "@/components/blockchain/MintTokens";
-import { HowItWorks } from "@/components/blockchain/HowItWorks";
-import { TransactionHistory } from "@/components/blockchain/TransactionHistory";
-import { WelcomeMessage } from "@/components/blockchain/WelcomeMessage";
+import { TokenBalance } from "@/components/dashboard/TokenBalance";
+import { StakingCard } from "@/components/dashboard/StakingCard";
+import { MintTokens } from "@/components/dashboard/MintTokens";
+import { HowItWorks } from "@/components/dashboard/HowItWorks";
+import { TransactionHistory } from "@/components/dashboard/TransactionHistory";
+import { WelcomeMessage } from "@/components/dashboard/WelcomeMessage";
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
-  // Use a ref to track if we need to refresh history after a transaction
   const needsHistoryRefresh = useRef(false);
 
-  // Account connection status
   const { address, isConnected } = useAccount();
 
-  // Create a refresh callback to be used when transactions complete
   const handleTransactionComplete = useCallback(() => {
     // Mark that we need a history refresh
     needsHistoryRefresh.current = true;
@@ -38,7 +33,6 @@ export default function Home() {
     tokenSymbol,
     balance,
     stakingData,
-    isOwner,
     rewardRate,
     refreshAllData,
     isLoading: isDataLoading,
@@ -93,7 +87,6 @@ export default function Home() {
     }
   }, [isConnected, refreshAllData]);
 
-  // Check for transaction completion and refresh data if needed
   useEffect(() => {
     // If a transaction was completed and we marked for history refresh
     if (
@@ -101,13 +94,10 @@ export default function Home() {
       !txState.pendingConfirmation &&
       !txState.pendingTx
     ) {
-      // First refresh account data
       refreshAllData();
 
-      // Then refresh history after a small delay to allow the blockchain to update
       const timer = setTimeout(() => {
         refreshHistory();
-        // Reset the flag
         needsHistoryRefresh.current = false;
       }, 2000);
 
@@ -120,12 +110,10 @@ export default function Home() {
     refreshHistory,
   ]);
 
-  // Manual refresh handler that can be passed to the history component
   const handleManualRefresh = useCallback(() => {
     refreshHistory();
   }, [refreshHistory]);
 
-  // Loading state
   if (!isClient) {
     return (
       <main className="min-h-screen p-6 md:p-12">
@@ -138,7 +126,6 @@ export default function Home() {
     );
   }
 
-  // Transaction loading state overlay
   const isPendingTransaction =
     txState.pendingTx || txState.pendingConfirmation || isConfirming;
 
@@ -169,13 +156,11 @@ export default function Home() {
 
         {isConnected ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* How It Works Card */}
             <HowItWorks
               tokenSymbol={tokenSymbol ? String(tokenSymbol) : ""}
               rewardRate={rewardRate}
             />
 
-            {/* Token Balance Card */}
             <TokenBalance
               balance={balance}
               symbol={tokenSymbol ? String(tokenSymbol) : ""}
@@ -183,7 +168,6 @@ export default function Home() {
               isLoading={isDataLoading}
             />
 
-            {/* Staking Card */}
             <StakingCard
               stakingData={stakingData}
               tokenSymbol={tokenSymbol ? String(tokenSymbol) : ""}
@@ -202,7 +186,6 @@ export default function Home() {
               isLoading={isDataLoading}
             />
 
-            {/* Mint Tokens Card */}
             <MintTokens
               mintAmount={mintAmount}
               onMintAmountChange={setMintAmount}
@@ -215,7 +198,6 @@ export default function Home() {
               isLoading={isDataLoading}
             />
 
-            {/* Transaction History & Events Card */}
             <TransactionHistory
               transactions={transactions}
               contractEvents={contractEvents}

@@ -64,7 +64,6 @@ export const TransactionHistory = ({
   generatePaginationItems,
   onRefresh,
 }: TransactionHistoryProps) => {
-  // Memoize the current page items to avoid recalculation on every render
   const currentTransactions = useMemo(
     () => getCurrentPageItems(transactions, currentTransactionsPage),
     [transactions, currentTransactionsPage, getCurrentPageItems]
@@ -75,7 +74,6 @@ export const TransactionHistory = ({
     [contractEvents, currentEventsPage, getCurrentPageItems]
   );
 
-  // Memoize the pagination items
   const transactionPaginationItems = useMemo(
     () =>
       generatePaginationItems(
